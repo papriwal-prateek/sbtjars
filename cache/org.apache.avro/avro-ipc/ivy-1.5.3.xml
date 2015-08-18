@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="org.apache.avro"
+		module="avro-ipc"
+		revision="1.5.3"
+		status="release"
+		publication="20110826072112"
+	>
+		<description homepage="http://avro.apache.org">
+		Avro inter-process communication components
+		</description>
+		<m:properties__organization.logo>http://www.apache.org/images/asf_logo_wide.gif</m:properties__organization.logo>
+		<m:dependency.management__org.apache.velocity__velocity__version>1.7</m:dependency.management__org.apache.velocity__velocity__version>
+		<m:dependency.management__net.sf.jopt-simple__jopt-simple__scope>compile</m:dependency.management__net.sf.jopt-simple__jopt-simple__scope>
+		<m:properties__hadoop-version>0.20.2</m:properties__hadoop-version>
+		<m:properties__junit-version>4.8.2</m:properties__junit-version>
+		<m:dependency.management__org.apache.hadoop__hadoop-core__scope>compile</m:dependency.management__org.apache.hadoop__hadoop-core__scope>
+		<m:properties__velocity-version>1.7</m:properties__velocity-version>
+		<m:dependency.management__org.mortbay.jetty__jetty__version>6.1.26</m:dependency.management__org.mortbay.jetty__jetty__version>
+		<m:properties__netty-version>3.2.4.Final</m:properties__netty-version>
+		<m:dependency.management__com.thoughtworks.paranamer__paranamer__version>2.3</m:dependency.management__com.thoughtworks.paranamer__paranamer__version>
+		<m:properties__jackson-version>1.7.3</m:properties__jackson-version>
+		<m:dependency.management__org.codehaus.jackson__jackson-mapper-asl__version>1.7.3</m:dependency.management__org.codehaus.jackson__jackson-mapper-asl__version>
+		<m:properties__jetty-version>6.1.26</m:properties__jetty-version>
+		<m:dependency.management__org.xerial.snappy__snappy-java__version>1.0.3.2</m:dependency.management__org.xerial.snappy__snappy-java__version>
+		<m:maven.plugins>org.apache.maven.plugins__maven-remote-resources-plugin__null|org.apache.maven.plugins__maven-remote-resources-plugin__null|org.apache.maven.plugins__maven-checkstyle-plugin__null|org.apache.maven.plugins__maven-remote-resources-plugin__null|org.apache.maven.plugins__maven-remote-resources-plugin__null|org.apache.maven.plugins__maven-checkstyle-plugin__null|org.apache.avro__avro-maven-plugin__1.5.3</m:maven.plugins>
+		<m:properties__distMgmtSnapshotsUrl>https://repository.apache.org/content/repositories/snapshots</m:properties__distMgmtSnapshotsUrl>
+		<m:properties__slf4j-version>1.6.1</m:properties__slf4j-version>
+		<m:dependency.management__net.sf.jopt-simple__jopt-simple__version>3.2</m:dependency.management__net.sf.jopt-simple__jopt-simple__version>
+		<m:dependency.management__org.mortbay.jetty__jetty__scope>compile</m:dependency.management__org.mortbay.jetty__jetty__scope>
+		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
+		<m:dependency.management__com.thoughtworks.paranamer__paranamer__scope>compile</m:dependency.management__com.thoughtworks.paranamer__paranamer__scope>
+		<m:dependency.management__org.xerial.snappy__snappy-java__scope>compile</m:dependency.management__org.xerial.snappy__snappy-java__scope>
+		<m:properties__distMgmtSnapshotsName>Apache Development Snapshot Repository</m:properties__distMgmtSnapshotsName>
+		<m:dependency.management__org.codehaus.jackson__jackson-mapper-asl__scope>compile</m:dependency.management__org.codehaus.jackson__jackson-mapper-asl__scope>
+		<m:dependency.management__org.apache.velocity__velocity__scope>compile</m:dependency.management__org.apache.velocity__velocity__scope>
+		<m:dependency.management__org.jboss.netty__netty__scope>compile</m:dependency.management__org.jboss.netty__netty__scope>
+		<m:properties__sourceReleaseAssemblyDescriptor>source-release</m:properties__sourceReleaseAssemblyDescriptor>
+		<m:properties__paranamer-version>2.3</m:properties__paranamer-version>
+		<m:properties__snappy-version>1.0.3.2</m:properties__snappy-version>
+		<m:dependency.management__org.apache.hadoop__hadoop-core__version>0.20.2</m:dependency.management__org.apache.hadoop__hadoop-core__version>
+		<m:properties__jopt-simple-version>3.2</m:properties__jopt-simple-version>
+		<m:dependency.management__org.jboss.netty__netty__version>3.2.4.Final</m:dependency.management__org.jboss.netty__netty__version>
+	</info>
+	<configurations>
+		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
+		<conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
+		<conf name="compile" visibility="public" description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths."/>
+		<conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
+		<conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
+		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
+		<conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
+		<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
+		<conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
+		<conf name="optional" visibility="public" description="contains all optional dependencies"/>
+	</configurations>
+	<publications>
+		<artifact name="avro-ipc" type="jar" ext="jar" conf="master"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.apache.avro" name="avro" rev="1.5.3" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.apache.avro" name="avro-compiler" rev="1.5.3" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="org.mortbay.jetty" name="jetty" rev="6.1.26" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.jboss.netty" name="netty" rev="3.2.4.Final" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.apache.velocity" name="velocity" rev="1.7" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="junit" name="junit" rev="4.8.2" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.6.1" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.slf4j" name="slf4j-simple" rev="1.6.1" force="true" conf="optional->compile(*),master(compile)"/>
+		<override org="org.mortbay.jetty" module="jetty" matcher="exact" rev="6.1.26"/>
+		<override org="org.codehaus.jackson" module="jackson-mapper-asl" matcher="exact" rev="1.7.3"/>
+		<override org="org.xerial.snappy" module="snappy-java" matcher="exact" rev="1.0.3.2"/>
+		<override org="org.jboss.netty" module="netty" matcher="exact" rev="3.2.4.Final"/>
+		<override org="com.thoughtworks.paranamer" module="paranamer" matcher="exact" rev="2.3"/>
+		<override org="org.apache.velocity" module="velocity" matcher="exact" rev="1.7"/>
+		<override org="net.sf.jopt-simple" module="jopt-simple" matcher="exact" rev="3.2"/>
+		<override org="org.apache.hadoop" module="hadoop-core" matcher="exact" rev="0.20.2"/>
+	</dependencies>
+</ivy-module>

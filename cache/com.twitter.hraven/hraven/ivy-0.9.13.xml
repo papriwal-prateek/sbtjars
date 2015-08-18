@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="com.twitter.hraven"
+		module="hraven"
+		revision="0.9.13"
+		status="release"
+		publication="20140426040226"
+	>
+		<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt" />
+		<description homepage="https://github.com/twitter/hraven">
+		hRaven collects run time data and statistics from map reduce jobs running on Hadoop clusters
+    and stores the collected job history in an easily queryable format. For the jobs that are run
+    through frameworks (Pig or Scalding/Cascading) that decompose a script or application into
+    a DAG of map reduce jobs for actual execution, hRaven groups job history data together by an
+    application construct.  This will allow for easier visualization of all of the component
+    jobs&apos; execution for an application and more comprehensive trending and analysis over time.
+		</description>
+		<m:properties__commons-logging.version>1.1.1</m:properties__commons-logging.version>
+		<m:properties__jersey.version>1.12</m:properties__jersey.version>
+		<m:properties__log4j.version>1.2.15</m:properties__log4j.version>
+		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
+		<m:properties__junit.version>4.8.1</m:properties__junit.version>
+		<m:properties__compileSource>1.6</m:properties__compileSource>
+		<m:properties__jackson.version>1.9.6</m:properties__jackson.version>
+		<m:properties__hadoop.version>1.0.4</m:properties__hadoop.version>
+		<m:properties__guava.version>12.0</m:properties__guava.version>
+		<m:maven.plugins>null__maven-deploy-plugin__2.7|org.apache.rat__apache-rat-plugin__0.9|null__maven-assembly-plugin__2.3</m:maven.plugins>
+		<m:properties__mockito-all.version>1.8.5</m:properties__mockito-all.version>
+		<m:properties__hbase.version>0.94.10</m:properties__hbase.version>
+	</info>
+	<configurations>
+		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
+		<conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
+		<conf name="compile" visibility="public" description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths."/>
+		<conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
+		<conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
+		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
+		<conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
+		<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
+		<conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
+		<conf name="optional" visibility="public" description="contains all optional dependencies"/>
+	</configurations>
+	<publications>
+	</publications>
+</ivy-module>

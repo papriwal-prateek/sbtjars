@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="1.0" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info organisation="org.scala-tools.sbt" module="precompiled-2.8.0.rc2_2.8.0.RC2" revision="0.7.4" status="release" publication="20100516211955"/>
+	<configurations>
+		<conf name="default" visibility="public" description=""/>
+		
+	</configurations>
+	<publications>
+		<artifact name="compiler-interface-bin" type="jar" ext="jar" conf="default" e:component="compiler-interface-bin_2.8.0.RC2"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.scala-tools.sbt" name="interface" rev="0.7.4" conf="default->default(compile)" e:component="xsbti">
+			
+		</dependency>
+	</dependencies>
+</ivy-module>

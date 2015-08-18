@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info organisation="com.twitter.hraven"
+		module="hraven-core"
+		revision="0.9.13"
+		status="release"
+		publication="20140426040745"
+	>
+		<description homepage="">
+		Core components of hRaven, including model classes and data access layer
+		</description>
+		<m:properties__commons-logging.version>1.1.1</m:properties__commons-logging.version>
+		<m:properties__jersey.version>1.12</m:properties__jersey.version>
+		<m:properties__log4j.version>1.2.15</m:properties__log4j.version>
+		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
+		<m:properties__junit.version>4.8.1</m:properties__junit.version>
+		<m:properties__compileSource>1.6</m:properties__compileSource>
+		<m:properties__jackson.version>1.9.6</m:properties__jackson.version>
+		<m:properties__hadoop.version>1.0.4</m:properties__hadoop.version>
+		<e:sbtTransformHash>5719f575b89bf472b6c7168932ed8b3752733254</e:sbtTransformHash>
+		<m:properties__jetty.version>6.1.26</m:properties__jetty.version>
+		<m:properties__guava.version>12.0</m:properties__guava.version>
+		<m:maven.plugins>null__maven-deploy-plugin__2.7|org.apache.rat__apache-rat-plugin__0.9|null__maven-assembly-plugin__2.3|null__maven-deploy-plugin__2.7|org.apache.rat__apache-rat-plugin__0.9|null__maven-assembly-plugin__2.3|org.apache.maven.plugins__maven-source-plugin__null|org.apache.maven.plugins__maven-surefire-plugin__null|null__maven-assembly-plugin__2.3</m:maven.plugins>
+		<m:properties__mockito-all.version>1.8.5</m:properties__mockito-all.version>
+		<m:properties__hbase.version>0.94.10</m:properties__hbase.version>
+	</info>
+	<configurations>
+		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
+		<conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
+		<conf name="compile" visibility="public" description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths."/>
+		<conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
+		<conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
+		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
+		<conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
+		<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
+		<conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
+		<conf name="optional" visibility="public" description="contains all optional dependencies"/>
+	</configurations>
+	<publications>
+		<artifact name="hraven-core" type="jar" ext="jar" conf="master"/>
+	</publications>
+	<dependencies>
+		<dependency org="com.google.guava" name="guava" rev="12.0" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="commons-logging" name="commons-logging" rev="1.1.1" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="commons-cli" name="commons-cli" rev="1.2" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="commons-lang" name="commons-lang" rev="2.5" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="log4j" name="log4j" rev="1.2.15" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)">
+			<exclude org="javax.jms" module="jms" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="javax.mail" module="mail" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jmx" module="jmxri" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="com.sun.jdmk" module="jmxtools" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.hadoop" name="hadoop-core" rev="1.0.4" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)">
+			<exclude org="hsqldb" module="hsqldb" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="net.sf.kosmosfs" module="kfs" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.eclipse.jdt" module="core" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="net.java.dev.jets3t" module="jets3t" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="oro" module="oro" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="org.apache.hbase" name="hbase" rev="0.94.10" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile);test->runtime(*),master(compile)">
+			<artifact name="hbase" type="jar" ext="jar" conf="provided"/>
+			<artifact name="hbase" type="jar" ext="jar" conf="test" m:classifier="tests"/>
+			<exclude org="org.apache.thrift" module="thrift" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jetty" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jetty-util" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jsp-2.1" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="jsp-api-2.1" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.mortbay.jetty" module="servlet-api-2.5" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+			<exclude org="org.slf4j" module="slf4j-log4j12" name="*" type="*" ext="*" conf="" matcher="exact"/>
+		</dependency>
+		<dependency org="com.sun.jersey" name="jersey-servlet" rev="1.12" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="com.sun.jersey" name="jersey-json" rev="1.12" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="com.sun.jersey" name="jersey-server" rev="1.12" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="com.sun.jersey" name="jersey-core" rev="1.12" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.6" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.6" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.codehaus.jackson" name="jackson-jaxrs" rev="1.9.6" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.9.6" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.mortbay.jetty" name="jetty" rev="6.1.26" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.mortbay.jetty" name="jetty-util" rev="6.1.26" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="org.apache.hadoop" name="hadoop-test" rev="1.0.4" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="junit" name="junit" rev="4.8.1" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="org.mockito" name="mockito-all" rev="1.8.5" force="true" conf="test->runtime(*),master(compile)"/>
+	</dependencies>
+</ivy-module>

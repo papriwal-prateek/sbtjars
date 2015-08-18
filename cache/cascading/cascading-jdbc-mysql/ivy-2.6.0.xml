@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="cascading"
+		module="cascading-jdbc-mysql"
+		revision="2.6.0"
+		status="release"
+		publication="20141016063553"
+	>
+		<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt" />
+		<description homepage="http://cascading.org/">
+		Cascading JDBC is a collection of adapters for JDBC.
+		</description>
+	</info>
+	<configurations>
+		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
+		<conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
+		<conf name="compile" visibility="public" description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths."/>
+		<conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
+		<conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
+		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
+		<conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
+		<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
+		<conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
+		<conf name="optional" visibility="public" description="contains all optional dependencies"/>
+	</configurations>
+	<publications>
+		<artifact name="cascading-jdbc-mysql" type="jar" ext="jar" conf="master"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="org.mockito" name="mockito-all" rev="1.9.5" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="cascading" name="cascading-core" rev="2.6.0" force="true" conf="test->runtime(*),master(compile)">
+			<artifact name="cascading-core" type="jar" ext="jar" conf="" m:classifier="tests"/>
+		</dependency>
+		<dependency org="cascading" name="lingual-core" rev="1.2.0-wip-+" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="junit" name="junit" rev="4.11" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="org.apache.hadoop" name="hadoop-test" rev="1.2.1" force="true" conf="test->runtime(*),master(compile)"/>
+		<dependency org="xerces" name="xercesImpl" rev="2.9.1" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.2" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)"/>
+		<dependency org="org.apache.hadoop" name="hadoop-core" rev="1.2.1" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)"/>
+		<dependency org="xalan" name="xalan" rev="2.7.1" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)"/>
+		<dependency org="cascading" name="cascading-hadoop" rev="2.6.0" force="true" conf="provided->compile(*),provided(*),runtime(*),master(compile)"/>
+		<dependency org="com.google.guava" name="guava" rev="15.0" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.25" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+		<dependency org="cascading" name="cascading-jdbc-core" rev="2.6.0" force="true" conf="compile->compile(*),master(compile);runtime->runtime(*)"/>
+	</dependencies>
+</ivy-module>

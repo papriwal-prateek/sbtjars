@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="1.0" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info organisation="org.scala-tools.sbt" module="launcher-interface" revision="0.7.4" status="release" publication="20100516211948"/>
+	<configurations>
+		<conf name="default" visibility="public" description=""/>
+		
+	</configurations>
+	<publications>
+		<artifact name="launcher-interface" type="jar" ext="jar" conf="default"/>
+	</publications>
+</ivy-module>

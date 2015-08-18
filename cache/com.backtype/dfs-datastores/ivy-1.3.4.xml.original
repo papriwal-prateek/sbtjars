@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.backtype</groupId>
+    <artifactId>dfs-datastores</artifactId>
+    <packaging>jar</packaging>
+    <description>dfs-datastores</description>
+    <version>1.3.4</version>
+    <name>dfs-datastores</name>
+    <organization>
+        <name>com.backtype</name>
+    </organization>
+    <url>https://github.com/nathanmarz/dfs-datastores</url>
+    <licenses>
+        <license>
+            <name>Eclipse Public License</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>git@github.com:nathanmarz/dfs-datastores.git</url>
+        <connection>scm:git:git@github.com:nathanmarz/dfs-datastores.git</connection>
+    </scm>
+    <developers>
+        <developer>
+            <id>nathanmarz</id>
+            <name>Nathan Marz</name>
+            <url>http://twitter.com/nathanmarz</url>
+        </developer>
+        <developer>
+            <id>sorenmacbeth</id>
+            <name>Soren Macbeth</name>
+            <url>http://twitter.com/sorenmacbeth</url>
+        </developer>
+        <developer>
+            <id>sritchie</id>
+            <name>Sam Ritchie</name>
+            <url>http://twitter.com/sritchie</url>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>com.novocode</groupId>
+            <artifactId>junit-interface</artifactId>
+            <version>0.10-M2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jvyaml</groupId>
+            <artifactId>jvyaml</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>13.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-core</artifactId>
+            <version>1.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>
